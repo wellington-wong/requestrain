@@ -15,7 +15,7 @@ export const reqHandler = createRequestHandler(async (req) => {
 
   // Test Route: Heavy JSON payload serialization & CPU cryptography/loop simulation
   if (url.pathname === '/api/heavy-compute') {
-    const startCpu = Date.now(); // Note: wall clock approximation, but gives an idea
+    const startCpu = performance.now(); // Note: wall clock approximation, but gives an idea
 
     let data = [];
     // Generating a large structure to serialize
@@ -27,7 +27,7 @@ export const reqHandler = createRequestHandler(async (req) => {
       data.push({ id: 1, text: `Item number ${i}`, hashed: Math.random() });
     }
 
-    return Response.json({ success: true, count: data.length, elapsed: Date.now() - startCpu, dateNow: Date.now(), startCpu });
+    return Response.json({ success: true, count: data.length, elapsed: performance.now() - startCpu, dateNow: performance.now(), startCpu });
   }
 
 
