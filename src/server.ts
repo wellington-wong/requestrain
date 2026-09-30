@@ -19,7 +19,7 @@ export const reqHandler = createRequestHandler(async (req) => {
 
     let data = [];
     // Generating a large structure to serialize
-    for (let i = 0; i < 1_000_000; i++) {
+    for (let i = 0; i < 1_200_000; i++) {
 
 
 
@@ -27,7 +27,7 @@ export const reqHandler = createRequestHandler(async (req) => {
       data.push({ id: 1, text: `Item number ${i}`, hashed: Math.random() });
     }
 
-    return Response.json({ success: true, count: data.length, elapsed: Date.now() });
+    return Response.json({ success: true, count: data.length, elapsed: Date.now() - startCpu, dateNow: Date.now(), startCpu });
   }
 
 
