@@ -19,7 +19,7 @@ export const reqHandler = createRequestHandler(async (req) => {
 
     let data = [];
     // Generating a large structure to serialize
-    for (let i = 0; i < 2_000_000; i++) {
+    for (let i = 0; i < 1_500_000; i++) {
 
 
 
