@@ -1,5 +1,5 @@
 {
-  "name": "requestree",
+  "name": "requestrain",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:requestree": "node dist/requestree/server/server.mjs",
+    "serve:ssr:requestrain": "node dist/requestrain/server/server.mjs",
     "deploy": "npm run build && wrangler deploy",
     "preview": "npm run build && wrangler dev",
     "cf-typegen": "wrangler types"

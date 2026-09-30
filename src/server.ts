@@ -4,7 +4,7 @@ import { AngularAppEngine, createRequestHandler } from '@angular/ssr';
 
 
 const angularApp = new AngularAppEngine({
-  allowedHosts: ['localhost', 'requestree.wellingtonwong-853.workers.dev'],
+  allowedHosts: ['localhost', 'requestrain.wellingtonwong-853.workers.dev'],
 })
 
 

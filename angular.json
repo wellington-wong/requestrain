@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "requestree": {
+    "requestrain": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -30,7 +30,7 @@
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
-              "allowedHosts": ["requestree.wellingtonwong-853.workers.dev"]
+              "allowedHosts": ["requestrain.wellingtonwong-853.workers.dev"]
 
 
             },"ssr": {
@@ -67,10 +67,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "requestree:build:production"
+              "buildTarget": "requestrain:build:production"
             },
             "development": {
-              "buildTarget": "requestree:build:development"
+              "buildTarget": "requestrain:build:development"
             }
           },
           "defaultConfiguration": "development"

@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "requestree",
+  "name": "requestrain",
   "main": "./dist/server/server.mjs",
   "compatibility_date": "2026-09-30",
   "observability": {
