@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:requestree": "node dist/requestree/server/server.mjs"
+    "serve:ssr:requestree": "node dist/requestree/server/server.mjs",
+    "deploy": "npm run build && wrangler deploy",
+    "preview": "npm run build && wrangler dev",
+    "cf-typegen": "wrangler types"
   },
   "private": true,
   "packageManager": "npm@10.9.8",
@@ -37,6 +40,8 @@
     "prettier": "^3.8.1",
     "tailwindcss": "^4.1.12",
     "typescript": "~6.0.2",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.0",
+    "wrangler": "^4.145.0",
+    "xhr2": "^0.2.1"
   }
 }

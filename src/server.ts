@@ -1,72 +1,49 @@
-import {
-  AngularNodeAppEngine,
-  createNodeRequestHandler,
+import { AngularAppEngine, createRequestHandler } from '@angular/ssr';
 
-  isMainModule,
-  writeResponseToNodeResponse,
-} from '@angular/ssr/node';
-import express from 'express';
-import { join } from 'node:path';
 
-import { Hono } from 'hono';
-import { cors } from 'hono/cors';
 
-const browserDistFolder = join(import.meta.dirname, '../browser');
 
-const app = express();
-const angularApp = new AngularNodeAppEngine();
+const angularApp = new AngularAppEngine({
+  allowedHosts: ['localhost', 'requestree.wellingtonwong-853.workers.dev'],
+})
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
 
-/**
- * Serve static files from /browser
- */
-app.use(
-  express.static(browserDistFolder, {
-    maxAge: '1y',
-    index: false,
-    redirect: false,
-  }),
-);
+export const reqHandler = createRequestHandler(async (req) => {
+  const url = new URL(req.url);
 
-/**
- * Handle all other requests by rendering the Angular application.
- */
-app.use((req, res, next) => {
-  angularApp
-    .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
-    .catch(next);
-});
 
-/**
- * Start the server if this module is the main entry point, or it is ran via PM2.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
- */
-if (isMainModule(import.meta.url) || process.env['pm_id']) {
-  const port = process.env['PORT'] || 4000;
-  app.listen(port, (error) => {
-    if (error) {
-      throw error;
+
+  // Test Route: Heavy JSON payload serialization & CPU cryptography/loop simulation
+  if (url.pathname === '/api/heavy-compute') {
+    const startCpu = Date.now(); // Note: wall clock approximation, but gives an idea
+
+    let data = [];
+    // Generating a large structure to serialize
+    for (let i = 0; i < 50000; i++) {
+
+
+
+
+      data.push({ id: 1, text: `Item number ${i}`, hashed: Math.random() });
     }
 
-    console.log(`Node Express server listening on http://localhost:${port}`);
-  });
-}
+    return Response.json({ success: true, count: data.length, elapsed: Date.now() - startCpu });
+  }
 
-/**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
- */
-export const reqHandler = createNodeRequestHandler(app);
+
+
+
+  // Normal SSR Route
+  const res = await angularApp.handle(req);
+  return res ?? new Response('Page not found.', { status: 100 });
+
+});
+
+
+
+
+
+
+
+
+export default { fetch: reqHandler };

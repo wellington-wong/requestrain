@@ -30,11 +30,14 @@
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
-              "allowedHosts": []
+              "allowedHosts": ["requestree.wellingtonwong-853.workers.dev"]
+
+
+            },"ssr": {
+              "entry": "src/server.ts",
+              "platform": "neutral"
             },
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "outputPath": "dist"
           },
           "configurations": {
             "production": {
